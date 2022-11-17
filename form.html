@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<form method="post" action="http://localhost:5000/CheckData">
+  <label class="move"> Task  </label>
+  <input type="text" class="text" name="task"><br>
+  <label> Bug</label>
+  <input type ="number" class="text" name="bug"><br>
+  <input type="submit" class="move1"/>
+<!--  <button class="move2"> Move to Sprint</button>-->
+</form>
+<form method="post" action="http://localhost:5000/check">
+  <select name="task_bug">
+    {% for task in value %}
+        <option value="{{task.task}} {{task.bug}}">Task: {{task.task}} Bugs: {{task.bug}}</option>
+    {% endfor %}
+  </select>
+  <input type="submit" class="move1" value="Move to Sprint"/>
+</form>
+<form method="post" action="http://localhost:5000/status">
+  <select name="sprint">
+    {% for sprint in sprints %}
+        <option value="{{sprint.id}}">Task: {{sprint.task}} Bugs: {{sprint.bug}}</option>
+    {% endfor %}
+  </select>
+  <input type="submit" class="move2" value="Mark as Completed">
+</form>
+{% endblock %}
